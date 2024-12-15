@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Улучшение валидации данных</title>
+</head>
+<body>
+  <form id="myForm" onsubmit="return validateForm()">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name"><br><br>
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age"><br><br>
+
+    <label for="userId">User ID:</label>
+    <input type="text" id="userId" name="userId"><br><br>
+
+    <input type="submit" value="Submit">
+  </form>
+
+  <script>
+    function validateForm() {
+    const name = document.getElementById("name").value;
+    const age = document.getElementById("age").value;
+    const userId = document.getElementById("userId").value;
+
+    const nameRegex = /^[a-zA-Z\s]+$/;
+    if (!nameRegex.test(name)) {
+        alert("Имя должно содержать только буквы и пробелы.");
+        return false;
+    }
+
+    if (isNaN(age) || parseInt(age) <= 0) {
+        alert("Возраст должен быть положительным числом.");
+        return false;
+    }
+
+    if (isNaN(userId)) {
+        alert("ID пользователя должен быть числом.");
+        return false;
+    }
+
+    return true; 
+    }
+  </script>
+</body>
+</html>
